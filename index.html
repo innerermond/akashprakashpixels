@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassy Mobile Website</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for glassy effect and responsive design */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Animated multi-color gradient background */
+            background: linear-gradient(135deg, #6EE7B7, #3B82F6, #9F7AEA, #EC4899);
+            background-size: 400% 400%; /* Make gradient much larger to enable dynamic animation */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            overflow: hidden; /* Prevent scrollbars from background animation */
+            animation: vividGradientShift 15s ease infinite; /* Apply enhanced gradient animation */
+        }
+
+        /* Keyframes for a more vivid, multi-color background gradient animation */
+        @keyframes vividGradientShift {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            backdrop-filter: blur(10px) saturate(180%); /* Glassy blur effect */
+            -webkit-backdrop-filter: blur(10px) saturate(180%); /* For Safari */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Light border */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Shadow for depth */
+            transition: all 0.3s ease-in-out; /* Smooth transitions for hover effects */
+        }
+
+        .glass-container:hover {
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45); /* Enhanced shadow on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        .search-icon-glass {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px) saturate(180%);
+            -webkit-backdrop-filter: blur(8px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px 0 rgba(31, 38, 135, 0.27);
+            transition: all 0.2s ease-in-out; /* Smooth transitions for hover/active */
+        }
+
+        .search-icon-glass:hover {
+            background: rgba(255, 255, 255, 0.4); /* Slightly less transparent on hover */
+            box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.35);
+            transform: scale(1.08); /* More pronounced scale on hover */
+        }
+
+        .search-icon-glass:active {
+            transform: scale(0.95); /* Shrink on click/tap */
+            box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.2); /* Smaller shadow on active */
+        }
+
+        /* Ensure content is centered and takes appropriate width on mobile, and scales responsively */
+        .mobile-layout {
+            width: 90%; /* Use percentage for fluid width */
+            max-width: 450px; /* Max width for typical phone screens, slightly increased */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Space between sections */
+            /* Add some responsive padding */
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        /* Responsive video placeholder */
+        .video-placeholder {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* 1:1 Aspect Ratio for equal height and width */
+            background-color: rgba(0, 0, 0, 0.5); /* Darker background for video area */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.25rem;
+            border-radius: 1.5rem; /* Rounded corners for video */
+            transition: transform 0.3s ease-in-out; /* Add transition for video section */
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.01); /* Subtle zoom on hover */
+        }
+
+        /* Responsive adjustments for larger screens (tablets and desktops) */
+        @media (min-width: 640px) { /* Small screens / tablets */
+            body {
+                padding: 2rem;
+            }
+            .mobile-layout {
+                width: 75%; /* On larger screens, the layout can be wider */
+                max-width: 550px; /* Allow it to be a bit wider on tablets */
+            }
+        }
+
+        @media (min-width: 1024px) { /* Larger screens / desktops */
+            .mobile-layout {
+                width: 60%; /* Even wider on desktops */
+                max-width: 600px; /* Max width for a contained "app-like" feel on desktop */
+            }
+        }
+    </style>
+</head>
+<body class="p-4 flex items-center justify-center min-h-screen">
+    <div class="mobile-layout glass-container rounded-3xl p-6">
+        <!-- Video Section -->
+        <div class="video-placeholder flex items-center justify-center text-center text-gray-200">
+            <p>Video Content Area</p>
+            <!-- You can embed a video here later -->
+            <!-- <video controls class="absolute top-0 left-0 w-full h-full object-cover rounded-3xl">
+                <source src="your-video-url.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> -->
+        </div>
+
+        <!-- Search Box Section -->
+        <div class="flex items-center glass-container rounded-full p-2 space-x-2">
+            <input
+                type="text"
+                placeholder="Search..."
+                class="flex-grow bg-transparent text-white placeholder-gray-200 outline-none px-3 py-2 rounded-full"
+            />
+            <button
+                class="search-icon-glass w-12 h-12 rounded-full flex items-center justify-center focus:outline-none transition-transform duration-200 hover:scale-105"
+            >
+                <!-- Search Icon (using SVG for flexibility and scaling) -->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2.5"
+                    stroke="white"
+                    class="w-6 h-6"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                </svg>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
