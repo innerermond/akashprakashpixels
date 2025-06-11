@@ -21,41 +21,45 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             display: flex; /* Makes the body a flex container */
-            align-items: center; /* Vertically centers children (main) */
-            justify-content: center; /* Horizontally centers children (main) */
+            flex-direction: column; /* Stacks children vertically */
+            align-items: center; /* Centers children horizontally within the body */
+            justify-content: flex-end; /* Pushes content to the bottom of the screen */
             padding: 1rem; /* Add some padding to prevent content from touching screen edges, especially on smaller screens */
+            padding-bottom: 5rem; /* Increased padding at the bottom to lift content from the very edge */
             box-sizing: border-box; /* Include padding in element's total width and height */
         }
 
         main {
             width: 100%; /* Ensures main takes full width up to its max-width */
             max-width: 28rem; /* Limits the maximum width of the content for readability */
-            display: flex; /* Make main a flex container to arrange video and search vertically */
+            display: flex; /* Make main a flex container to arrange image and search vertically */
             flex-direction: column; /* Stack children vertically */
-            align-items: center; /* Centers items (video and search) horizontally within the main container */
-            gap: 2rem; /* Provides space between the video section, search section, and social media section */
+            align-items: center; /* Centers items (image and search) horizontally within the main container */
+            gap: 2rem; /* Provides space between the image section, search section, and social media section */
             margin: auto; /* Ensures horizontal centering within the flex parent body */
+            /* Margin auto will work for horizontal centering when flex-direction is column.
+               It will also push content up as much as possible, combined with justify-content: flex-end on body. */
         }
 
-        /* Video Section Styles */
-        .video-section {
-            width: 100%; /* Ensures the video section takes full width of its parent (main) */
-            background-color: #e2e8f0; /* Light gray background for the video placeholder */
+        /* Image Section Styles (formerly video-section) */
+        .image-section {
+            width: 100%; /* Ensures the image section takes full width of its parent (main) */
+            background-color: #e2e8f0; /* Light gray background for the image placeholder */
             border-radius: 0.5rem; /* Slightly rounded corners for a modern look */
-            overflow: hidden; /* Ensures any content (like a video) respects the border-radius */
+            overflow: hidden; /* Ensures any content (like an image) respects the border-radius */
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* Subtle shadow for depth */
-            padding-bottom: 56.25%; /* Creates a 16:9 aspect ratio for the video container (height / width * 100) */
-            position: relative; /* Necessary for the absolute positioning of the video player to fill the padding-bottom space */
+            padding-bottom: 56.25%; /* Creates a 16:9 aspect ratio for the image container (height / width * 100) */
+            position: relative; /* Necessary for the absolute positioning of the image to fill the padding-bottom space */
         }
 
-        .video-player {
-            position: absolute; /* Allows the video player to fill its parent's dimensions */
+        .image-display { /* Renamed from .video-player to .image-display */
+            position: absolute; /* Allows the image to fill its parent's dimensions */
             top: 0;
             left: 0;
-            width: 100%; /* Fills the width of the video-section */
-            height: 100%; /* Fills the height (created by padding-bottom) of the video-section */
-            display: block; /* Removes any default extra space below inline video elements */
-            object-fit: cover; /* Ensures the video covers the entire area without distortion */
+            width: 100%; /* Fills the width of the image-section */
+            height: 100%; /* Fills the height (created by padding-bottom) of the image-section */
+            display: block; /* Removes any default extra space below inline image elements */
+            object-fit: cover; /* Ensures the image covers the entire area without distortion */
         }
 
         /* Search Section Styles */
@@ -177,8 +181,6 @@
         } /* Instagram Gradient */
         .x-bg { background-color: #000000; } /* X (Twitter) Black */
         .facebook-bg { background-color: #1877F2; } /* Facebook Blue */
-        .linkedin-bg { background-color: #0A66C2; } /* LinkedIn Blue */
-
 
         .social-icon-container svg {
             width: 1.5rem; /* Size of the SVG icon within the circle */
@@ -191,17 +193,15 @@
 
     <!-- Main Content Container -->
     <main>
-        <!-- Video Section -->
-        <section id="video-section" class="video-section">
-            <video class="video-player" autoplay loop muted>
-                <!--
-                    *** IMPORTANT: Replace 'your-local-video.mp4' with the actual path to your video file. ***
-                    This path should be relative to where your HTML file is located.
-                -->
-                <!-- Placeholder for actual video source. You should replace this with a local video file. -->
-                <source src="your-local-video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <!-- Image Section -->
+        <section id="image-section" class="image-section">
+            <!--
+                *** IMPORTANT: Replace 'your-local-image.png' with the actual path to your image file. ***
+                This path should be relative to where your HTML file is located.
+                For example:
+                <img class="image-display" src="images/my-app-banner.jpg" alt="My App Banner">
+            -->
+            <img class="image-display" src="c.png" alt="Placeholder Image">
         </section>
 
         <!-- Search Section -->
@@ -272,7 +272,6 @@
                     </svg>
                 </a>
             </div>
-
         </section>
     </main>
 
