@@ -209,8 +209,11 @@
             // Clear any previous message timeout
             clearTimeout(messageTimeout);
 
-            if (query) {
-                // If the user typed something, show a confirmation message
+            if (query.toLowerCase() === 'youtube') {
+                // If the user typed "youtube", redirect to YouTube
+                window.location.href = 'https://www.youtube.com/';
+            } else if (query) {
+                // If the user typed something else, show a confirmation message
                 searchMessage.textContent = `Searching for "${query}"...`;
                 console.log(`User searched for: ${query}`);
 
