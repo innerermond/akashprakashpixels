@@ -23,9 +23,8 @@
             display: flex; /* Makes the body a flex container */
             flex-direction: column; /* Stacks children vertically */
             align-items: center; /* Centers children horizontally within the body */
-            justify-content: flex-end; /* Pushes content to the bottom of the screen */
+            justify-content: center; /* Vertically centers content */
             padding: 1rem; /* Add some padding to prevent content from touching screen edges, especially on smaller screens */
-            padding-bottom: 5rem; /* Increased padding at the bottom to lift content from the very edge */
             box-sizing: border-box; /* Include padding in element's total width and height */
         }
 
@@ -35,13 +34,11 @@
             display: flex; /* Make main a flex container to arrange image and search vertically */
             flex-direction: column; /* Stack children vertically */
             align-items: center; /* Centers items (image and search) horizontally within the main container */
-            gap: 2rem; /* Provides space between the image section, search section, and social media section */
+            gap: 2rem; /* Provides space between the image section and search section */
             margin: auto; /* Ensures horizontal centering within the flex parent body */
-            /* Margin auto will work for horizontal centering when flex-direction is column.
-               It will also push content up as much as possible, combined with justify-content: flex-end on body. */
         }
 
-        /* Image Section Styles (formerly video-section) */
+        /* Image Section Styles */
         .image-section {
             width: 100%; /* Ensures the image section takes full width of its parent (main) */
             background-color: #e2e8f0; /* Light gray background for the image placeholder */
@@ -52,7 +49,7 @@
             position: relative; /* Necessary for the absolute positioning of the image to fill the padding-bottom space */
         }
 
-        .image-display { /* Renamed from .video-player to .image-display */
+        .image-display {
             position: absolute; /* Allows the image to fill its parent's dimensions */
             top: 0;
             left: 0;
@@ -146,47 +143,6 @@
             color: #4b5563; /* Gray color for the message text */
             height: 1.25rem; /* Fixed height to prevent layout shifts when message appears/disappears */
         }
-
-        /* Social Media Section Styles */
-        .social-media-section {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem; /* Increased space between social media icons */
-            margin-top: 1rem; /* Space above the social media section */
-            width: 100%; /* Ensure it takes full width to respect main's max-width */
-            flex-wrap: wrap; /* Allows logos to wrap to the next line on smaller screens */
-        }
-
-        .social-icon-container {
-            width: 3rem; /* Size of the circular background */
-            height: 3rem;
-            border-radius: 50%; /* Makes it circular */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-        }
-
-        .social-icon-container:hover {
-            transform: translateY(-3px); /* Subtle lift effect */
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-
-        /* Specific colors for social media icons */
-        .youtube-bg { background-color: #ff0000; } /* YouTube Red */
-        .instagram-bg {
-            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-        } /* Instagram Gradient */
-        .x-bg { background-color: #000000; } /* X (Twitter) Black */
-        .facebook-bg { background-color: #1877F2; } /* Facebook Blue */
-
-        .social-icon-container svg {
-            width: 1.5rem; /* Size of the SVG icon within the circle */
-            height: 1.5rem;
-            fill: #ffffff; /* White color for all social media icons */
-        }
     </style>
 </head>
 <body class="h-full">
@@ -201,7 +157,7 @@
                 For example:
                 <img class="image-display" src="images/my-app-banner.jpg" alt="My App Banner">
             -->
-            <img class="image-display" src="c.png" alt="Placeholder Image">
+            <img class="image-display" src="your-local-image.png" alt="Placeholder Image">
         </section>
 
         <!-- Search Section -->
@@ -231,47 +187,6 @@
             </form>
              <!-- Message area for search feedback -->
              <div id="search-message" class="search-message"></div>
-        </section>
-
-        <!-- Social Media Section -->
-        <section id="social-media-section" class="social-media-section">
-            <!-- Minimal YouTube Logo (Simplified triangle for play button) -->
-            <div class="social-icon-container youtube-bg">
-                <a href="https://www.youtube.com/" target="_blank" aria-label="YouTube">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 16.5L15 12L9 7.5V16.5Z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Minimal Instagram Logo (Simplified camera/lens shape) -->
-            <div class="social-icon-container instagram-bg">
-                <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="2" width="20" height="20" rx="4" ry="4"/>
-                        <circle cx="12" cy="12" r="5"/>
-                        <circle cx="17.5" cy="6.5" r="1"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Minimal X (Twitter) Logo (Simplified 'X' shape) -->
-            <div class="social-icon-container x-bg">
-                <a href="https://twitter.com/" target="_blank" aria-label="X (formerly Twitter)">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26l4.796 5.87h-3.957l-5.696-6.893L5.601 22.25H2.5L9.61 13.999L2.245 2.25h3.292l5.352 7.792L18.244 2.25Zm-4.935 15.656L12.593 11.23L5.429 3.05H8.31L14.773 11.4L20.25 21.95h-2.826Z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Minimal Facebook Logo -->
-            <div class="social-icon-container facebook-bg">
-                <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.525 9H14V7c0-.6.4-1 1-1h2V2.859s-1.5-.213-3-.213c-3.15 0-5.5 1.572-5.5 5.5v3.141H6v4h3.5v9h5v-9h3.5l.525-4z"/>
-                    </svg>
-                </a>
-            </div>
         </section>
     </main>
 
